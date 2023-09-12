@@ -3,7 +3,7 @@ import '../css/common.css';
 import '../css/03-feedback.css';
 
 
-const STORAGE_KEY = 'feedback-msg'; //робимо константу для розміщення в коді при повторенні ключа
+const STORAGE_KEY = 'feedback-form-state'; //робимо константу для розміщення в коді при повторенні ключа
 
 const refs = {
     form: document.querySelector('.feedback-form'),
