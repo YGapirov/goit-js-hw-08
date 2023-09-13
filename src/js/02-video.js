@@ -13,7 +13,7 @@ player.on('timeupdate', throttle(onPlay, 1000)); //відстежуємо под
 
 const setTime = localStorage.getItem(VPCT_KEY);  //отримали час(місце) відтворення
 
-player.setCurrentTime(setTime);  //передали для відтворення
+player.setCurrentTime(setTime || 0);  //передали для відтворення || якщо локал порожній буде 0сек
 
 
 
