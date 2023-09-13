@@ -14,8 +14,7 @@ const refs = {
 populateTextarea();
 
 refs.form.addEventListener('submit', onFormSubmit);
-// refs.emailInput.addEventListener('input', throttle(onTextareaInput, 500));
-refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+refs.textarea.addEventListener('input', throttle(onEmailInput, 500));
 
 let formData = {
     email: '',
@@ -26,23 +25,30 @@ function onFormSubmit(evt) {
     evt.preventDefault(); //блокуєм перезавантаження сторінки після сабміту
     formData.email = refs.emailInput.value;
     formData.message = refs.textarea.value;
-    evt.currentTarget.reset(); //скидуєм значення інпут
-    localStorage.removeItem(STORAGE_KEY) //скидуємо значення локала після сабміта
+
+    if (formData.email === '' || formData.message === '') {
+        alert('Please fill in all the fields!');
+        return; 
+    }
 
     console.log('Email:', formData.email);
     console.log('Message:', formData.message);
 
-};
+    evt.currentTarget.reset(); //скидуєм значення інпут
+    localStorage.removeItem(STORAGE_KEY); //скидуємо значення локала після сабміта
+
+}
 
 
-function onTextareaInput(evt) {
+function onEmailInput(evt) {
     const message = evt.target.value; //ставимо саме таргет, бо бібліотека свариться на CurrentTarget через застарілу інфо
     const email = refs.emailInput.value;
-
     const data = {message, email}; //створюємо обєкт для передачі меседжа і імейла
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-};
+}
+
+
 
 //отримуємо значення зі сховища при оновленні сторінки якщо там була дані
 function populateTextarea() {
@@ -54,5 +60,7 @@ function populateTextarea() {
         refs.textarea.value = message; 
         refs.emailInput.value = email;
     }
+   
 };
 
+   
