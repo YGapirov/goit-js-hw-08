@@ -40,7 +40,7 @@ function onFormSubmit(evt) {
 
 function onFormInput(evt) {
     const email = refs.emailInput.value;
-    const message = evt.target.value; //ставимо саме таргет, бо бібліотека свариться на CurrentTarget через застарілу інфо
+    const message = refs.textarea.value; //ставимо саме таргет, бо бібліотека свариться на CurrentTarget через застарілу інфо
     
     const data = {email, message}; //створюємо обєкт для передачі меседжа і імейла
 
